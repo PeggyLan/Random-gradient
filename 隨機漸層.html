@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            /* margin: 0px; */
+            background: black;
+        }
+
+        .box {
+            width: 250px;
+            height: 130px;
+            /* border: 1px solid black; */
+            box-shadow: 0 0 20px white;
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translateY(-50%);
+            background: white;
+        }
+
+        .box2 {
+            width: 250px;
+            height: 130px;
+            /* border: 1px solid black; */
+            box-shadow: 0 0 20px white;
+            position: absolute;
+            top: 50%;
+            right: 30%;
+            transform: translateY(-50%);
+            background: white;
+        }
+
+        .text {
+            display: inline-block;
+            width: 25px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            /* overflow: hidden; */
+            width: 130px;
+            height: 5px;
+            outline: none;
+            background: rgb(243, 160, 202);
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            position: relative;
+            /* 设为相对位置，为了前后区块的绝对位置而设定 */
+            width: 10px;
+            height: 10px;
+            background: rgb(241, 7, 104);
+            border-radius: 50%;
+            transition: .2s;
+        }
+    </style>
+</head>
+
+<body id="cc">
+    <div class="box">
+        <p>　R:<input id="range1" type="range" min="0" max="255" value="0" oninput="on_input(1)">
+            <span id="text1">0</span>
+            <input type="button" value="隨機" onclick="on_click()"></p>
+
+        <p>　G:<input id="range2" type="range" min="0" max="255" value="0" oninput="on_input(2)">
+            <span id="text2">0</span>
+            <input type="button" value="隨機" onclick="on_click()"></p>
+
+        <p>　B:<input id="range3" type="range" min="0" max="255" value="0" oninput="on_input(3)">
+            <span id="text3">0</span>
+            <input type="button" value="隨機" onclick="on_click()"></p>
+    </div>
+    <div class="box2">
+        <p>　R:<input id="range4" type="range" min="0" max="255" value="0" oninput="on_input(4)">
+            <span id="text4">0</span>
+            <input type="button" value="隨機" onclick="on_click()"></p>
+
+        <p>　G:<input id="range5" type="range" min="0" max="255" value="0" oninput="on_input(5)">
+            <span id="text5">0</span>
+            <input type="button" value="隨機" onclick="on_click()"></p>
+
+        <p>　B:<input id="range6" type="range" min="0" max="255" value="0" oninput="on_input(6)">
+            <span id="text6">0</span>
+            <input type="button" value="隨機" onclick="on_click()"></p>
+    </div>
+    <script>
+        //抓取range bar的值
+        //若aa=1，表示來源為第1個range bar
+        //若aa=2，表示來源為第2個range bar
+        //若aa=3，表示來源為第2個range bar
+        function on_input(aa) {
+            let val = document.getElementById('range' + aa).value;
+            document.getElementById('text' + aa).innerText = val;
+
+            let range1 = document.getElementById('range1').value;
+            let range2 = document.getElementById('range2').value;
+            let range3 = document.getElementById('range3').value;
+
+            let range4 = document.getElementById('range4').value;
+            let range5 = document.getElementById('range5').value;
+            let range6 = document.getElementById('range6').value;
+            let cc = document.getElementById("cc")
+            cc.style.background =
+                `linear-gradient(70deg,rgb(${range1},${range2},${range3}),rgb(${range4},${range5},${range6}))`
+        }
+
+        function on_click() {
+            let r = Math.floor(Math.random() * 255)
+            let g = Math.floor(Math.random() * 255)
+            let b = Math.floor(Math.random() * 255)
+
+            document.getElementById('text1').innerText = r
+            document.getElementById('text2').innerText = g
+            document.getElementById('text3').innerText = b
+            document.getElementById('range1').value = r
+            document.getElementById('range2').value = g
+            document.getElementById('range3').value = b
+
+
+            // let range1 = document.getElementById('range1').value;
+            // let range2 = document.getElementById('range2').value;
+            // let range3 = document.getElementById('range3').value;
+
+            let r1 = Math.floor(Math.random() * 255)
+            let g1 = Math.floor(Math.random() * 255)
+            let b1 = Math.floor(Math.random() * 255)
+
+            document.getElementById('text4').innerText = r1
+            document.getElementById('text5').innerText = g1
+            document.getElementById('text6').innerText = b1
+            document.getElementById('range4').value = r1
+            document.getElementById('range5').value = g1
+            document.getElementById('range6').value = b1
+
+            // let range4 = document.getElementById('range4').value;
+            // let range5 = document.getElementById('range5').value;
+            // let range6 = document.getElementById('range6').value;
+            let cc = document.getElementById("cc")
+            // cc.style.backgroundColor = `linear-gradient(${range1},${range2},${range3})(${range4},${range5},${range6})`
+            cc.style.background =
+                `linear-gradient(70deg,rgb(${r},${g},${b}),rgb(${r1},${g1},${b1}))`
+        }
+    </script>
+</body>
+
+</html>
